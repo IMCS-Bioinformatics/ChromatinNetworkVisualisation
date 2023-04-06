@@ -15,7 +15,7 @@ In order to include data files in the repository, large datasets were grouped by
 Each triangle (CL3) is in form (A,B,C) where A,B and C are loci on the chromsome, A<B<C and there exist interactions AB, BC and AC.
 We say that a triangle ABC has tissue t1 if all 3 links have the tissue t1.
 
-1 - number of CL3 (triangles) selected\
+1 - number of CL3 (triangles) selected and view selection;\
 2 - Chromosome selection; rem Giant? rem Garbage - see 8;\
 3 - Tissue types selection. All these tissue types must be present in all visible CL3. That means every visible triangle has each of the selected tissue types in each of the 3 links;\
 4 and 5 - number of tissues per triangle;\
@@ -31,4 +31,4 @@ We say that a triangle ABC has tissue t1 if all 3 links have the tissue t1.
 
 ![image](https://user-images.githubusercontent.com/119489036/230392178-d7ef8194-aa90-4f66-9c30-85db63be9c10.png)
 15 - Switch between graph and crossfilter view. In the graph view, all links of previously selected triangles are visible; \
-16 - One connected component of graph. The bigger the node degree, the larger the node in size. If a node is a circle, there are no expressed genes in the loci. If a node is a diamond, there is at least one gene expressed. Hover over a node to see the precize location on the chormosome, hover over a link to see a list of tissues for this link.
+16 - One connected component of graph. The bigger the node degree, the larger the node in size. If a node is a circle, there are no expressed genes in the loci. If a node is a diamond, there is at least one gene expressed. Hover over a node to see the precize location on the chormosome, hover over a link to see a list of tissues for this link. Node color tells the approximate location on the chromsome - nodes that are in close proximity on the chromosome have similar colors.
