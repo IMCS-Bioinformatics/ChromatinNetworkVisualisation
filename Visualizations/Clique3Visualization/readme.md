@@ -1,6 +1,6 @@
 # CliqueVizNew
 This is the visualizator of Cliques (Triangles)
-Currently 3 datasets with pre-processed files are available:
+Currently 3 datasets with pre-processed files are available:\
 -BloodCellPCHiC: Javierre et al. Lineage-Specific Genome Architecture Links Enhancers and Non-coding Disease Variants to Target Gene Promoters, Cell, ISSN: 0092-8674, Vol: 167, Issue: 5, Page: 1369-1384.e19 (2016)\
 -Jung: Jung, I. et al. A compendium of promoter-centered long-range chromatin interactons in the human genome. Nat Genet 51, 1442–1449 (2019)\
 -3DIV: Kyukwang Kim et al. 3DIV update for 2021: a comprehensive resource of 3D genome and 3D cancer genome, Nucleic Acids Research, Volume 49, Issue D1 (2021)\
@@ -27,4 +27,8 @@ We say that a triangle ABC has tissue t1 if all 3 links have the tissue t1.
 
 12 - table with 20 selected CL3 and data on them;\
 13 - button to download csv file with currently selected CL3;\
-14 - number of CL3 per tissue type currently selected.
+14 - number of CL3 per tissue type currently selected.\
+
+![image](https://user-images.githubusercontent.com/119489036/230392178-d7ef8194-aa90-4f66-9c30-85db63be9c10.png)
+15 - Switch between graph and crossfilter view. In the graph view, all links of previously selected triangles are visible; \
+16 - One connected component of graph. The bigger the node degree, the larger the node in size. If a node is a circle, there are no expressed genes in the loci. If a node is a diamond, there is at least one gene expressed. Hover over a node to see the precize location on the chormosome, hover over a link to see a list of tissues for this link.
