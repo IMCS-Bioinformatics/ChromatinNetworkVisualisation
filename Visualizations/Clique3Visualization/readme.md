@@ -1,4 +1,4 @@
-# Clique of length 3 Visualizationw
+# Clique of length 3 Visualization
 This is the visualizator of Cliques (Triangles)
 Currently 3 datasets with pre-processed files are available:\
 -BloodCellPCHiC: Javierre et al. Lineage-Specific Genome Architecture Links Enhancers and Non-coding Disease Variants to Target Gene Promoters, Cell, ISSN: 0092-8674, Vol: 167, Issue: 5, Page: 1369-1384.e19 (2016)\
