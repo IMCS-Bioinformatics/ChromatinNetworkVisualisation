@@ -1,5 +1,8 @@
 # Component visualization
-This is the component visualization. Currently 2 datasets with pre-processed files are available:\
+This is the component visualization.\
+Components are defined in Viksna et al. Topological structure analysis of chromatin interaction networks. BMC Bioinformatics 20 (Suppl 23), 618 (2019). https://doi.org/10.1186/s12859-019-3237-z (https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-3237-z)
+
+Currently 2 datasets with pre-processed files are available:\
 -Jung: Jung, I. et al. A compendium of promoter-centered long-range chromatin interactons in the human genome. Nat Genet 51, 1442–1449 (2019)\
 -3DIV: Kyukwang Kim et al. 3DIV update for 2021: a comprehensive resource of 3D genome and 3D cancer genome, Nucleic Acids Research, Volume 49, Issue D1 (2021)
 ## How to open
