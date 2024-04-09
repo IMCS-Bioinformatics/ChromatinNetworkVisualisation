@@ -4,8 +4,8 @@ An interactive chromatin interaction network visualization for exploring and stu
 
 ## Getting Started
 
-Clone this repository locally and open the html file in a browser. Note: This project is tested on Chrome.
-Then choose one of the preprocessed files when promted to select a dataset and chromosome. Finally choose one of the available tissue types and press the 'Upload tissue' button to start the visualization.
+Clone this repository locally and open the [html](./htmlAndJs/BioClique.html) file in a browser. Note: This project is tested on Chrome version 123.0.6312.106.
+Then choose one of the preprocessed files for either [tissue pcHi-C dataset](./dataFilesToChoose/tissue_pcHiC/) or for [3DIV tissue Hi-C dataset](./dataFilesToChoose/3DIV_tissue_HiC/) when promted in order to select a dataset and a chromosome. Finally choose one of the available tissue types and press the 'Upload tissue' button to start the visualization.
 
 ## Visualizations Explained
 
@@ -28,7 +28,7 @@ Following this introduction are detailed explanations for each plot included in 
 | 3 | Download button | The downloaded file contains all available information about all segments that are currently active (satisfy all filters).|
 |4, 5| Location on chromosome | Nodes have genomic coordinates (in base pairs). Use this plot to keep only those nodes that are located in a specific interval on the chromosome. It is possible to set the interval more precisely using (5).|
 |6, 8| Distance to the closest GTEx gene | Genotype tissue expression (GTEx) atlas contains expression values of different genes in different tissue types. The distance between a GTEx gene and a node is measured in base pairs (bp). This distance is 0 if the node and gene segments overlap by at least 1 bp, indicating direct proximity. Otherwise, the distance is the shortest number of base pairs separating the two segments, reflecting the closest point between the node's and the gene's coordinates. In this plot, each node's distance to its one closest gene is shown. |
-|7, 10| Distance to closest FANTOM5 | FANTOM5 expression values are taken from Forrest et al., A promoter-level mammalian expression atlas. Each node is assigned one closest FANTOM5 in the same manner as for GTEx genes in (6,8). The original data was available in hg19 genome coordinates, while the visualization uses GRCh38 coorinates, therefore all FANTOM5 locations were conversed to GRCh38 coordinates using Pyliftover.|
+|7, 9| Distance to closest FANTOM5 | FANTOM5 expression values are taken from Forrest et al., A promoter-level mammalian expression atlas. Each node is assigned one closest FANTOM5 in the same manner as for GTEx genes in (6,8). The original data was available in hg19 genome coordinates, while the visualization uses GRCh38 coorinates, therefore all FANTOM5 locations were conversed to GRCh38 coordinates using Pyliftover.|
 |10, 11| Expression value of the closest GTEx gene or FANTOM5 | For each node, the expression value of the nearest GTEx gene and FANTOM5 is displayed in two separate charts. If a node is equally close to multiple GTEx genes or FANTOM5 entities (distance=0 as calculated before in (8) and (9)), the highest expression value from among these is assigned to that node.|
 |12| Eigenvector centrality | Base 10 logarithm of the eigenvector centrality metric for each node is shown in this chart. The value quantifies the 'influence' of a node in a graph.|
 |13, 14, 15| Ensembl variants | The information on somatic short variants, somatic structural variants, and structural variants comes from the Ensembl database, which catalogs variants along with their genomic coordinates. A node is matched with a variant if they share an overlap of at least 20% of the length of the shorter entity. It is possible for one node to overlap with multiple variants and one variant to overlap with multiple nodes. The charts display the total count of variants that overlap with each node, indicating the number of variants associated with it.|
@@ -45,7 +45,9 @@ Following this introduction are detailed explanations for each plot included in 
 
 #### Preprocessed Hi-C Datasets
 1. **Tissue pcHi-C** Jung, I., Schmitt, A., et al.: A compendium of promoter-centered long-range chromatin interactions in the human genome. Nature Genetics 51(10), 1442-1449 (2019). https://doi.org/10.1038/s41588-019-0494-8
-2. **Tissue Hi-C** Kim, K., Jang, I., et al.: 3DIV update for 2021: a comprehensive resource of 3D genome and 3D cancer genome. Nucleic Acids Research 49(D1), D38-D46 (2021). https://doi.org/10.1093/nar/gkaa1078
+2. **3DIV Tissue Hi-C** Kim, K., Jang, I., et al.: 3DIV update for 2021: a comprehensive resource of 3D genome and 3D cancer genome. Nucleic Acids Research 49(D1), D38-D46 (2021). https://doi.org/10.1093/nar/gkaa1078
+
+The code to preprocess these datasets and generate the files that can be used with the visualization is available in [our other repository](https://github.com/IMCS-Bioinformatics/HiCCliqueGraphs/tree/main/processDifferentDB). 
 
 #### Additional data used
 1. **Ensembl** Fergal J Martin et al., Ensembl 2023, Nucleic Acids Research, Volume 51, https://doi.org/10.1093/nar/gkac958
@@ -53,6 +55,7 @@ Following this introduction are detailed explanations for each plot included in 
 3. **GTEx** Lonsdale, J. et al. The Genotype-Tissue Expression (GTEx) project. Nat Genet 45, 580–585 (2013). https://doi.org/10.1038/ng.2653.
 4. **FANTOM5** The FANTOM Consortium and the RIKEN PMI and CLST (DGT). A promoter-level mammalian expression atlas. Nature 507, 462–470 (2014). https://doi.org/10.1038/nature13182.
 5. **ChromHMM annotations from Roadmap Epigenomics** Roadmap Epigenomics Consortium., Kundaje, A. et al. Integrative analysis of 111 reference human epigenomes. Nature 518, 317–330 (2015). https://doi.org/10.1038/nature14248.
+
 
 
 #### Tools
