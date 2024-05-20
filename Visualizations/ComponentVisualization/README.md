@@ -1,6 +1,7 @@
 # Component visualization
 This is the component visualization.\
-Components are defined in Viksna et al. Topological structure analysis of chromatin interaction networks. BMC Bioinformatics 20 (Suppl 23), 618 (2019). https://doi.org/10.1186/s12859-019-3237-z
+Components are defined in Viksna et al. Topological structure analysis of chromatin interaction networks. BMC Bioinformatics 20 (Suppl 23), 618 (2019). https://doi.org/10.1186/s12859-019-3237-z \
+Components are calculated for data sets containing Hi-C data for several different tissue types. Components are found by analysing all subsets of given tissues. We call the subset currently being analysed "base tissues". A network that only contains interactions present in all base tissues is created. Vertices represent chromatin segments, while edges represent chromatin interactions. In this network, connected components are found. We look at components of manageable size - ones that have between 10 and 100 vertices. For each tissue not included in base tissues, we calculate the percentage of nodes of this component that are also present in this tissue. If it is at least 75%, we call this tissue "type A tissue". If it is no more than 25%, we call this tissue "type B tissue". If at least one type A and one type B tissue exists, this connected component is saved for further analysis using ComponentVis.
 
 Currently 2 datasets with pre-processed files are available:\
 -Jung: Jung, I. et al. A compendium of promoter-centered long-range chromatin interactons in the human genome. Nat Genet 51, 1442–1449 (2019)\

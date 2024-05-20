@@ -69,6 +69,9 @@ The code to preprocess these datasets and generate the files that can be used wi
 
 3. **NetworkX**
    - **Description**: NetworkX is a Python library for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks. Within our project, NetworkX is employed to calculate eigenvector centrality measures.
+  
+#### Data pre-processing
+Scripts to prepare files that can be used with this visaulization can be found [here](https://github.com/IMCS-Bioinformatics/HiCCliqueGraphs/tree/main/processDifferentDB).
 
 
 
