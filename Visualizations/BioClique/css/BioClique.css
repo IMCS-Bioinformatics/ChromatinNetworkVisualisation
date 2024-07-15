@@ -1,0 +1,275 @@
+body {
+    background-color: snow;
+}
+
+#mynetwork {
+    width: 99%;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* height: 80vh; */
+    /* border: 1px solid lightgray; */
+    font-size: large;
+    /* background-color: snow; */
+}
+#mygraph {
+    width: 100%;
+    height: 99%;
+    /* height: 50vh; */
+    border: 1px solid lightgray;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+#selectionDiv > *:not(#rangePart) {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid lightgray;
+}
+#graphVisDiv {
+    width: max-content;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid lightgray;
+}
+#graphDescription {
+    font-size: 10pt;
+}
+#rangePart > * {
+    margin: 5px;
+    padding: 0px 5px 0px 5px;
+    border: 1px solid lightgray; 
+}
+.allMyTinyFilters {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    padding: 10px;
+}
+#uploadTissues {
+    padding-left: 10px;
+}
+
+#mystats {
+    /* float: left;  */
+    display: block; 
+    font-size: large;
+}
+
+.myBigPlots {
+    display: grid;
+    grid-template-columns: 2fr 3fr ;
+    
+
+}
+#number-box {
+    background: orange;
+    width: 200px;
+    font-size: 64px;
+    text-align: center;
+    padding-top: 63px;
+    padding-bottom: 63px;
+    height: 74px;
+    line-height: normal;
+    display:none;
+}
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+} 
+
+th,td {
+    border: 1px solid black;
+}
+#mySupertable {
+    table-layout: auto;
+    width: 100%;  
+}
+form * {
+    display: block;
+    margin: 10px;
+}
+
+/* #pieChartsDiv {
+    display: flex;
+    justify-content: space-between;
+} */
+
+/* Optional: Ensure each chart doesn't grow or shrink, and takes up equal space */
+#pieChartsDiv > div {
+    flex: 1 0 auto;
+}
+
+.chart-container {
+    width: 100%;
+    display: flex;
+    justify-content: start; /* Horizontally center the content */
+    align-items: start; /* Vertically center the content */
+    flex-wrap: nowrap; /* Do not wrap content to next line */
+    gap: 10px; /* Gap between each chart-group for better visibility */
+    padding-bottom: 10px;
+    /* background-color: #ffffff; */
+}
+
+.chart-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row; 
+    justify-content: start; /* Align content to the top */
+    align-items: center; /* Horizontally center the content */
+    gap: 10px; /* Gap between each extra-chart for better visibility */
+    border: 1px solid #ddd; /* A border to make the grouping visible */
+    padding: 10px; /* Padding inside each chart-group */
+}
+.chart-groupp {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; 
+    justify-content: start; /* Align content to the top */
+    align-items: center; /* Horizontally center the content */
+    gap: 10px; /* Gap between each extra-chart for better visibility */
+    border: 1px solid #ddd; /* A border to make the grouping visible */
+    border-radius: 5px;
+    background-color: #ffffff; 
+    padding: 10px; /* Padding inside each chart-group */
+}
+
+.main-chart {
+    width: 100%; /* Ensures main chart takes up full width of its container */
+    background-color: #ffffff;
+    margin-bottom: 5px; /* Space between main chart and extra charts */
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-top: 7px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.extra-charts {
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); Specifies up to 2 charts in one row */
+    max-width: 100%; /* set the maximum width to */
+    width: 100%;
+    margin: 0 auto; 
+    gap: 5px; /* Space between extra charts */
+}
+
+.extra-chart {
+    /* height: 50px; Set a specific height for extra charts to make them smaller */
+    background-color: #ffffff;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+#SomaticDiv0 {
+    grid-column: 1;
+    grid-row: 1;
+}
+#SomaticDiv1 {
+    grid-column: 1;
+    grid-row: 2;
+}
+#SomaticDiv2 {
+    grid-column: 1;
+    grid-row: 3;
+}
+#RNApolymeraseDiv{
+    grid-column: 1;
+    grid-row: 4;
+}
+#right-item-id {
+    grid-column: 2/5;
+    grid-row: 1/5;
+}
+/* #sandrasExtraChartsDiv{
+    background-color:rgb(171, 210, 197);
+} */
+
+
+.two-halves {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    column-gap: 10px;
+    grid-auto-flow: column;
+}
+
+.three-sides-auto {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    column-gap: 10px;
+}
+.two-sides {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    column-gap: 10px;
+    grid-auto-flow: column;
+}
+.left-side {
+    grid-column: 1;
+}
+.right-side {
+    grid-column: 2/4;
+}
+
+.graph-div {
+    /* height: 1000px; */
+    aspect-ratio : 1 / 1;
+}
+
+.mytooltip {
+    display: hidden;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #dcdcdc;
+    color: #3e3e3e;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 100000;
+}
+
+.myinput {
+    font-size: large;
+}
+
+.mybtn {
+    font-size: large;
+    border-color: rgb(169, 169, 169);
+}
+
+#readFile {
+    font-size: large;
+}
+
+#tissueSelect > .myTissueTick {
+    margin-left: 15px;
+}
+
+.chart-title {
+    font-weight: 600;
+    color: rgb(80, 80, 80);
+}
+
+.single-chart-container {
+    position: relative;
+    /* width: 100px; */
+    /* height: 300px; */
+}
+
+/* .filtered-pie-chart{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1; 
+} */
+.original-pie-chart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5; /*on top*/  
+    pointer-events: none; /* Make the overlay chart click-through */
+}

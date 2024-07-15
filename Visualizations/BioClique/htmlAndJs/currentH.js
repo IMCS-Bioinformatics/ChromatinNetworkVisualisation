@@ -47,13 +47,19 @@ class myContainer {
           if (t=="ZNF/RPTS"){
             divId = "SandrasIezimjuDivSmallZNFRPTS"
           }
-          $('<div class="extra-chart" id="'+divId+'"></div>').appendTo('#sandrasExtraChartsDiv');
+          let html = '<div class="single-chart-container extra-chart">' +
+                      '<div class="filtered-pie-chart" id="' + divId + '"></div>' + 
+                      '<div class="original-pie-chart" id="' + divId + '-OG"></div></div>';
+          $(html).appendTo('#sandrasExtraChartsDiv');
         })
 
         //Add divs for segment (encode) states
         _.each(this.allData.possibleEncodes, function (t){
           let divId = "EncodeSmallFeatureDiv"+t;
-          $('<div class="extra-chart" id="'+divId+'"></div>').appendTo('#encodeFeaturesDiv');
+          let html = '<div class="single-chart-container extra-chart">' +
+                      '<div class="filtered-pie-chart" id="' + divId + '"></div>' + 
+                      '<div class="original-pie-chart" id="' + divId + '-OG"></div></div>';
+          $(html).appendTo('#encodeFeaturesDiv');
         })
         
         this.allData.stateToInd = {};
@@ -98,6 +104,11 @@ class myContainer {
     dc.config.defaultColors(d3.schemeCategory10);
     this.dimensions = [];
     this.charts = [];
+
+    // Deep copy the data for the original chart to avoid any reference issues
+    var originalData = JSON.parse(JSON.stringify(this.activeSegments));
+    var originalNdx = crossfilter(originalData);  // Independent crossfilter for static display of original values
+
     //CREATE CROSSFILTER
     var ndx = crossfilter(this.activeSegments);
 
@@ -161,7 +172,7 @@ class myContainer {
 
 
 
-    function createPieChart(self, divName, dimension, labelList=[], title=""){
+    function createPieChart(self, divName, dimension, labelList=[], title="", og=false){
       console.log("createPieChart");
       var newPieChart = new dc.PieChart(divName);
       var vh=256;
@@ -212,7 +223,7 @@ class myContainer {
           newPieChart.ordering(function(d) {
             let iii=d.key;
             iii=0;
-            if (d.key==[1]) {
+            if (d.key[0]==1) {
                 return -1;  // This will always place "SpecialKey" at the beginning
             } else {
                 let iii=d.value;
@@ -231,24 +242,40 @@ class myContainer {
 
         self.pieChart[divName] = newPieChart;
 
-
+        if (og == true) {
+          newPieChart
+            .radius(30)
+            .innerRadius(10)
+            .colors(function (d) {
+              return d[0] == 0 ? "rgba(60, 100, 154, 0.5)" : "rgba(255, 165, 0, 0.5)";
+            })
+            .renderLabel(false);
+        }
 
 
       return newPieChart;
     }
-    var p1 = createPieChart(self, "#miRNADivSmall1", ndx.dimension(function (d) {return [d[3]];}), ["RNA"] , "miRNA Target Region"      );
+    var p1 = createPieChart(self, "#miRNADivSmall1", ndx.dimension(function (d) {return [d[3]];}), ["RNA"] , "miRNA Target Region" , false    );
+    var p1_OG = createPieChart(self, "#miRNADivSmall1-OG", originalNdx.dimension(function (d) {return [d[3]];}), ["RNA"] , "miRNA Target Region" , true    );
 
     //var p4 = createPieChart(self, "#otherFTCDiv", ndx.dimension(function (d) {return [d[4], d[5]];}) , ["Enh", "TSS"] , "Other Regulatory Regions2"    );
-    var p31 = createPieChart(self, "#otherFTCDivSmall1", ndx.dimension(function (d) {return [d[4]];}) , ["Enh"] , "Enh"     );
-    var p32 = createPieChart(self, "#otherFTCDivSmall2", ndx.dimension(function (d) {return [d[5]];}) , ["TSS"] , "TSS"     );
+    var p31 = createPieChart(self, "#otherFTCDivSmall1", ndx.dimension(function (d) {return [d[4]];}) , ["Enh"] , "Enh" , false   );
+    var p31_OG = createPieChart(self, "#otherFTCDivSmall1-OG", originalNdx.dimension(function (d) {return [d[4]];}) , ["Enh"] , "Enh" , true   );
+    var p32 = createPieChart(self, "#otherFTCDivSmall2", ndx.dimension(function (d) {return [d[5]];}) , ["TSS"] , "TSS" , false   );
+    var p32_OG = createPieChart(self, "#otherFTCDivSmall2-OG", originalNdx.dimension(function (d) {return [d[5]];}) , ["TSS"] , "TSS" , true   );
 
     
     //var p5 = createPieChart(self, "#HumanRegFeatDiv", ndx.dimension(function (d) {return [d[6], d[7], d[8], d[9], d[10]];}) , ["Enh","Open chr.", "CTCF bind.s.","Prom.", "TF bind.", ] , "Regulatory Features"     );
-    var p51 = createPieChart(self, "#HumanRegFeatDivSmall1", ndx.dimension(function (d) {return [d[6]];}) , ["Enh"] , "ENH"     );
-    var p52 = createPieChart(self, "#HumanRegFeatDivSmall2", ndx.dimension(function (d) {return [d[7]];}) , ["Open chr."] , "Open chr"     );
-    var p53 = createPieChart(self, "#HumanRegFeatDivSmall3", ndx.dimension(function (d) {return [d[8]];}) , ["CTCF bind.s."] , "CTCF b.s"     );
-    var p54 = createPieChart(self, "#HumanRegFeatDivSmall4", ndx.dimension(function (d) {return [d[9]];}) , ["Prom."] , "Prom"     );
-    var p55 = createPieChart(self, "#HumanRegFeatDivSmall5", ndx.dimension(function (d) {return [d[10]];}) , ["TF bind."] , "TF bind"     );
+    var p51 = createPieChart(self, "#HumanRegFeatDivSmall1", ndx.dimension(function (d) {return [d[6]];}) , ["Enh"] , "ENH" , false   );
+    var p51_OG = createPieChart(self, "#HumanRegFeatDivSmall1-OG", originalNdx.dimension(function (d) {return [d[6]];}) , ["Enh"] , "ENH" , true   );
+    var p52 = createPieChart(self, "#HumanRegFeatDivSmall2", ndx.dimension(function (d) {return [d[7]];}) , ["Open chr."] , "Open chr" , false   );
+    var p52_OG = createPieChart(self, "#HumanRegFeatDivSmall2-OG", originalNdx.dimension(function (d) {return [d[7]];}) , ["Open chr."] , "Open chr" , true   );
+    var p53 = createPieChart(self, "#HumanRegFeatDivSmall3", ndx.dimension(function (d) {return [d[8]];}) , ["CTCF bind.s."] , "CTCF b.s" , false   );
+    var p53_OG = createPieChart(self, "#HumanRegFeatDivSmall3-OG", originalNdx.dimension(function (d) {return [d[8]];}) , ["CTCF bind.s."] , "CTCF b.s" , true   );
+    var p54 = createPieChart(self, "#HumanRegFeatDivSmall4", ndx.dimension(function (d) {return [d[9]];}) , ["Prom."] , "Prom" , false   );
+    var p54_OG = createPieChart(self, "#HumanRegFeatDivSmall4-OG", originalNdx.dimension(function (d) {return [d[9]];}) , ["Prom."] , "Prom" , true   );
+    var p55 = createPieChart(self, "#HumanRegFeatDivSmall5", ndx.dimension(function (d) {return [d[10]];}) , ["TF bind."] , "TF bind" , false   );
+    var p55_OG = createPieChart(self, "#HumanRegFeatDivSmall5-OG", originalNdx.dimension(function (d) {return [d[10]];}) , ["TF bind."] , "TF bind" , true   );
     
     
     
@@ -291,7 +318,18 @@ class myContainer {
         }
         return returnable; //otherwise
         });
-      var newp = createPieChart(self, divId, nd , [t] , t );  
+      let nd_og = originalNdx.dimension(function (d) {
+        let returnable = [0];
+        let allSegmentStateList = self.allChData.segmentStates;
+        if (tissue in allSegmentStateList[d[0]]){
+          if (allSegmentStateList[d[0]][tissue].includes(t)){
+            returnable=[1];
+          }
+        }
+        return returnable; //otherwise
+        });
+      var newp = createPieChart(self, divId, nd , [t] , t , false);
+      var newp_og = createPieChart(self, divId+'-OG', nd_og , [t] , t , true);  
     });
     //
     //create encode small charts
@@ -307,7 +345,18 @@ class myContainer {
         }
         return returnable; //otherwise
         });
-      var newp = createPieChart(self, divId, nd , [t] , t );  
+      let nd_og = originalNdx.dimension(function (d) {
+        let returnable = [0];
+        let allSegmentStateList = self.allChData.encodeStates;
+        if (tissue in allSegmentStateList[d[0]]){
+          if (allSegmentStateList[d[0]][tissue].includes(t)){
+            returnable=[1];
+          }
+        }
+        return returnable; //otherwise
+        });
+      var newp = createPieChart(self, divId, nd , [t] , t , false);
+      var newp_og = createPieChart(self, divId+'-OG', nd_og , [t] , t , true);  
     }); 
     var b1 = createBarChartSummable(self, "#RNApolymeraseDiv", ndx.dimension(function (d) {return d[14];}), "RNA polymerase II binding sites (ENCODE)" , 14, "Property count", "Node count"     );
 
