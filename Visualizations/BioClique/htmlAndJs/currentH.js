@@ -227,7 +227,7 @@ class myContainer {
                 return -1;  // This will always place "SpecialKey" at the beginning
             } else {
                 let iii=d.value;
-                return -d.value;  // or any other default ordering for the rest
+                return d.value;  // or any other default ordering for the rest
             }
         });
         }
@@ -1353,12 +1353,13 @@ function addCheck(tissues) {
     _.each(cases.sort(), function (t) {
       html +=
         // '<input type="checkbox" name="checkGroup" class="myTissueTick" id="' +
+        '<label>' +
         '<input type="radio" name="checkGroup" class="myTissueTick" id="' +
         t +
         '" value="' +
         t +
         '"  onclick="filter();" checked="checked"> ' +
-        t;
+        t + '</label>';
     });
     $("#tissueSelect").append(html);
 

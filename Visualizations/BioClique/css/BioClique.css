@@ -95,12 +95,12 @@ form * {
 } */
 
 /* Optional: Ensure each chart doesn't grow or shrink, and takes up equal space */
-#pieChartsDiv > div {
+/* #pieChartsDiv > div {
     flex: 1 0 auto;
-}
+} */
 
 .chart-container {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: start; /* Horizontally center the content */
     align-items: start; /* Vertically center the content */
@@ -243,8 +243,9 @@ form * {
     font-size: large;
 }
 
-#tissueSelect > .myTissueTick {
+#tissueSelect > label {
     margin-left: 15px;
+    font-weight: 400;
 }
 
 .chart-title {
